@@ -166,5 +166,5 @@ public class CartEndpointTest {
         stubFor(get(urlEqualTo("/product/error")).willReturn(
                 aResponse().withStatus(500)));
     }
-
+    
 }
