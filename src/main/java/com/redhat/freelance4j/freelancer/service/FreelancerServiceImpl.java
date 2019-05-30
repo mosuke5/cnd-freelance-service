@@ -13,6 +13,12 @@ public class FreelancerServiceImpl implements FreelancerService {
 	public List<Freelancer> getFreelancers() {
 		//postgresqlからデータとってきて返す
 		List<Freelancer> hoge = new ArrayList<Freelancer>();
+		Freelancer f1 = new Freelancer();
+		f1.setFreelancerId(1);
+		Freelancer f2 = new Freelancer();
+		f1.setFreelancerId(2);
+		hoge.add(f1);
+		hoge.add(f2);
 		return hoge;
 	}
 	

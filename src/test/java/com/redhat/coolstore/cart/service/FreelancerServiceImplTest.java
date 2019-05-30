@@ -9,6 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -38,6 +39,14 @@ public class FreelancerServiceImplTest {
 
         assertThat(f, notNullValue());
         assertThat(f.getFreelancerId(), equalTo(1));
+    }
+
+    @Test
+    public void testGetFreelancers() {
+        List<Freelancer> f = freelancerService.getFreelancers();
+
+        assertThat(f, notNullValue());
+        assertThat(f.size(), equalTo(2));
     }
 
 }

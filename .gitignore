@@ -161,6 +161,9 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+# vscode
+.vscode/
+
 # Exclude maven wrapper
 !/.mvn/wrapper/maven-wrapper.jar
 
