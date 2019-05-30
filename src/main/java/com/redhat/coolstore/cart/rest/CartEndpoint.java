@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import com.redhat.coolstore.cart.model.ShoppingCart;
 import com.redhat.coolstore.cart.service.ShoppingCartService;
 
-@Path("/cart")
+@Path("/freelancer")
 @Component
 public class CartEndpoint {
 
