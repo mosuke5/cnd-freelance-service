@@ -1,37 +1,37 @@
-package com.redhat.freelance4j.freelancer.model;
+package com.redhat.coolstore.cart.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "hoge")
+@Table(name = "freelancer")
+@NamedQuery(name="Freelancer.findAll", query="SELECT f FROM Freelancer f") // use Freelancer instead of freelancer
 public class Freelancer implements Serializable {
 
     private static final long serialVersionUID = 6964558044240061049L;
 
     @Id
-    @Column(name = "freelancer_id")
-    private int freelancerId;
-
-    @Column(name = "first_name")
+    private String freelancerId;
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
     private String email;
-    private List<String> skills ;
+    @Type(type = "com.redhat.coolstore.cart.service.GenericArrayUserType")
+    private String[] skills ;
+    //private List<String> skills ;
     
 
     public Freelancer() {
     }
 
-    public Freelancer(int freelancerId, String firstName, String lastName, String email, List<String> skills) {
+    public Freelancer(String freelancerId, String firstName, String lastName, String email, String[] skills) {
+    //public Freelancer(String freelancerId, String firstName, String lastName, String email, List<String> skills) {
+	//public Freelancer(String freelancerId, String firstName, String lastName, String email) {
         super();
         this.freelancerId = freelancerId;
         this.firstName = firstName;
@@ -40,11 +40,11 @@ public class Freelancer implements Serializable {
         this.skills = skills;
     }
 
-    public int getFreelancerId() {
+    public String getFreelancerId() {
         return freelancerId;
     }
 
-    public void setFreelancerId(int freelancerId) {
+    public void setFreelancerId(String freelancerId) {
         this.freelancerId = freelancerId;
     }
 
@@ -72,11 +72,13 @@ public class Freelancer implements Serializable {
         this.email = email;
     }
     
-    public List<String> getSkills() {
+    //public List<String> getSkills() {
+	public String[] getSkills() {
         return skills;
     }
     
-    public void setSkills(List<String> skills) {
+    //public void setSkills(List<String> skills) {
+	public void setSkills(String[] skills) {
         this.skills = skills;
     }
 }

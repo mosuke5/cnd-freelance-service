@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CartServiceConfiguration {
+public class FreelancerServiceConfiguration {
 
     @Bean
     public JacksonJsonProvider jsonProvider(ObjectMapper objectMapper) {
