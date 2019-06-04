@@ -1,10 +1,10 @@
 language: java
 jdk:
-  - oraclejdk8
   - openjdk8
+  
 services:
   - postgresql
 
 before_script:
-  - psql -c 'create database freelancerdb_test;' -U postgres
-  - psql -U postgres -d freelancerdb_test -f etc/testdata.sql
+  - psql -c 'create database freelancerdb-test;' -U postgres
+  - psql -U postgres -d freelancerdb-test -f etc/testdata.sql
