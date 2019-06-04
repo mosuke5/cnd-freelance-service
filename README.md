@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mosuke5/cnd-freelance-service.svg?branch=master)](https://travis-ci.org/mosuke5/cnd-freelance-service)
+
 Freelancer4j freelancer service for Appmod Microservices Advanced course.
 
 Implementation: Spring Boot, PostgreSQL
