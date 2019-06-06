@@ -19,9 +19,9 @@ import com.redhat.coolstore.cart.service.FreelancerService;
 
 @Path("/freelancers")
 @Component
-public class CartEndpoint {
+public class FreelancerEndpoint {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CartEndpoint.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FreelancerEndpoint.class);
     
     @Autowired
     private FreelancerService freelancerService;

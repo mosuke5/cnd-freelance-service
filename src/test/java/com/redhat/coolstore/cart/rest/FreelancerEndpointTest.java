@@ -20,7 +20,7 @@ import io.restassured.http.ContentType;
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CartEndpointTest {
+public class FreelancerEndpointTest {
 
     @LocalServerPort
     private int port;
