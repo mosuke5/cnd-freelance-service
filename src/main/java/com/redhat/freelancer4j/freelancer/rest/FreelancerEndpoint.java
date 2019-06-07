@@ -1,4 +1,4 @@
-package com.redhat.coolstore.cart.rest;
+package com.redhat.freelancer4j.freelancer.rest;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.redhat.coolstore.cart.model.Freelancer;
-import com.redhat.coolstore.cart.service.FreelancerService;
+import com.redhat.freelancer4j.freelancer.model.Freelancer;
+import com.redhat.freelancer4j.freelancer.service.FreelancerService;
 
 
 @Path("/freelancers")

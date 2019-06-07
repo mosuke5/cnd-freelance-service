@@ -1,4 +1,4 @@
-package com.redhat.coolstore.cart.service;
+package com.redhat.freelancer4j.freelancer.service;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -21,9 +21,9 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.redhat.coolstore.cart.model.Freelancer;
-import com.redhat.coolstore.cart.service.FreelancerService;
-import com.redhat.coolstore.cart.service.FreelancerServiceImpl;
+import com.redhat.freelancer4j.freelancer.model.Freelancer;
+import com.redhat.freelancer4j.freelancer.service.FreelancerService;
+import com.redhat.freelancer4j.freelancer.service.FreelancerServiceImpl;
 
 public class FreelancerServiceImplTest {
 

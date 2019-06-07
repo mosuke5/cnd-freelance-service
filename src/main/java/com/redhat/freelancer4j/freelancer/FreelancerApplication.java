@@ -1,4 +1,4 @@
-package com.redhat.coolstore.cart;
+package com.redhat.freelancer4j.freelancer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

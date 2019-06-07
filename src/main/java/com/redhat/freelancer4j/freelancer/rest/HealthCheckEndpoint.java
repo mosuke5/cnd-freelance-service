@@ -1,4 +1,4 @@
-package com.redhat.coolstore.cart.rest;
+package com.redhat.freelancer4j.freelancer.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

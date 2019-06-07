@@ -1,8 +1,8 @@
-package com.redhat.coolstore.cart.service;
+package com.redhat.freelancer4j.freelancer.service;
 
 import java.util.List;
 
-import com.redhat.coolstore.cart.model.Freelancer;
+import com.redhat.freelancer4j.freelancer.model.Freelancer;
 
 public interface FreelancerService {
 

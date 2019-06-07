@@ -1,4 +1,4 @@
-package com.redhat.coolstore.cart;
+package com.redhat.freelancer4j.freelancer;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

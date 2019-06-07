@@ -1,4 +1,4 @@
-package com.redhat.coolstore.cart.model;
+package com.redhat.freelancer4j.freelancer.model;
 
 import java.io.Serializable;
 
@@ -21,7 +21,7 @@ public class Freelancer implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
-    @Type(type = "com.redhat.coolstore.cart.service.GenericArrayUserType")
+    @Type(type = "com.redhat.freelancer4j.freelancer.service.GenericArrayUserType")
     private String[] skills ;
     //private List<String> skills ;
     

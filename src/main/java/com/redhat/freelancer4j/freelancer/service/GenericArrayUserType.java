@@ -1,4 +1,4 @@
-package com.redhat.coolstore.cart.service;
+package com.redhat.freelancer4j.freelancer.service;
 
 import java.io.Serializable;
 import java.sql.Array;
