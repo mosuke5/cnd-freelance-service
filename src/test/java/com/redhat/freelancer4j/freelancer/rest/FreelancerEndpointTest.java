@@ -25,20 +25,9 @@ public class FreelancerEndpointTest {
     @LocalServerPort
     private int port;
 
-    @BeforeClass
-    public static void beforeTestClass() throws Exception {
-        // create test table
-        // load test data
-    }
-
     @Before
     public void beforeTest() throws Exception {
         RestAssured.baseURI = String.format("http://localhost:%d/freelancers", port);
-    }
-
-    @AfterClass
-    public static void afterTestClass() throws Exception {
-        // drop test table
     }
 
     @Test

@@ -16,14 +16,12 @@ public class FreelancerServiceImpl implements FreelancerService {
 
 	@Override
 	public List<Freelancer> getFreelancers() {
-		//postgresqlからデータとってきて返す
 		List<Freelancer> freelancers = em.createNamedQuery("Freelancer.findAll", Freelancer.class).getResultList();
 		return freelancers;
 	}
 	
 	@Override
 	public Freelancer getFreelancer(String id) {
-		//postgresqlからデータとってきて返す
 		Freelancer freelancer = em.find(Freelancer.class, id);
 		return freelancer;
 	}
