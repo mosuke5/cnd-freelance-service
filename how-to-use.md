@@ -26,18 +26,16 @@ clusterrole.rbac.authorization.k8s.io/edit added: "system:serviceaccount:app-dev
 
 ## Slave imageの作成
 Jenkinsパイプラインを実際に動作させるJenkins slaveのイメージを作成する。
-OpenShiftではデフォルトではmavenとnodejs環境のJenkins slaveイメージしか用意されていないため、Python用のイメージを作成する。ゼロから作るのは大変なので、`redhat-cop/containers-quickstarts`から拝借する。
+`jenkins-agent-maven`をベースとしながら、テストに必要なpostgresqlのクライアントをインストールしたJenkins Slaveを作成する。
+作成方法は、Dockerfileからビルドする。
 
 ```
-$ git clone https://github.com/redhat-cop/containers-quickstarts
-$ cd containers-quickstarts 
-$ oc process -f .openshift/templates/jenkins-slave-generic-template.yml \
-    -p NAME=jenkins-slave-python \
-    -p SOURCE_CONTEXT_DIR=jenkins-slaves/jenkins-slave-python \
-    -p DOCKERFILE_PATH=Dockerfile \
-    | oc create -n app-devops -f -
-imagestream.image.openshift.io/jenkins-slave-python created
-buildconfig.build.openshift.io/jenkins-slave-python created
+$ cat etc/Dockerfile_jenkins_agent
+$ oc process -f openshift/custom-jenkins-agent.yaml | oc apply -n app-devops -f -
+buildconfig.build.openshift.io/custom-jenkins-agent-maven created
+imagestream.image.openshift.io/custom-jenkins-agent-maven created
+
+$ oc start-build custom-jenkins-agent-maven -n app-devops
 ```
 
 ## Jenkinsの設定
@@ -85,6 +83,7 @@ https://jenkins-app-devops.xxxxx.com/generic-webhook-trigger/invoke?token=<your-
 データベースが起動後にアプリケーションが自動的に起動するはずだ。
 
 最後は起動したアプリケーションにブラウザから接続して確認してみよう。
+URLは`https://xxxxxxxxxxxx/health` or `https://xxxxxxxxxxxx/freelancers`
 
 # カスタマイズ
 ## プライベートのGitレポジトリを扱いたい
