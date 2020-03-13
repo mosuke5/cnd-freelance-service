@@ -62,8 +62,7 @@ objects:
             initialDelaySeconds: 3
             httpGet:
               path: "/health"
-              port: 8080
-          livenessProbe:
+              port: 8080 livenessProbe:
             timeoutSeconds: 3
             initialDelaySeconds: 30
             httpGet:
@@ -71,7 +70,7 @@ objects:
               port: 8080
           env:
           - name: PG_HOST
-            value: "${DATABASE_SERVICE_NAME}"
+            value: "postgresql"
           - name: PG_DB
             value: "${DATABASE_NAME}"
           - name: PG_USER
@@ -90,7 +89,7 @@ objects:
 - kind: PersistentVolumeClaim
   apiVersion: v1
   metadata:
-    name: "${DATABASE_SERVICE_NAME}"
+    name: "postgresql"
   spec:
     accessModes:
     - ReadWriteOnce
@@ -100,7 +99,7 @@ objects:
 - kind: Service
   apiVersion: v1
   metadata:
-    name: "${DATABASE_SERVICE_NAME}"
+    name: "postgresql"
     annotations:
       description: Exposes the database server
   spec:
@@ -109,11 +108,11 @@ objects:
       port: 5432
       targetPort: 5432
     selector:
-      name: "${DATABASE_SERVICE_NAME}"
+      name: "postgresql"
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
-    name: "${DATABASE_SERVICE_NAME}"
+    name: "postgresql"
     annotations:
       description: Defines how to deploy the database
       template.alpha.openshift.io/wait-for-ready: 'true'
@@ -126,7 +125,7 @@ objects:
             command:
             - "/bin/bash"
             - "-c"
-            - "sleep 10 && curl https://raw.githubusercontent.com/mosuke5/cnd-freelance-service/master/etc/testdata.sql -o testdata.sql && PGPASSWORD=password psql -U freelancer -d freelancerdb -h localhost -f testdata.sql"
+            - "sleep 10 && curl https://raw.githubusercontent.com/mosuke5/cnd-freelance-service/master/etc/testdata.sql -o testdata.sql && PGPASSWORD=password psql -U freelancer -d freelancerdb -h $POSTGRESQL_SERVICE_HOST -f testdata.sql"
             containerName: postgresql
           failurePolicy: Abort
         timeoutSeconds: 600
@@ -143,17 +142,17 @@ objects:
     - type: ConfigChange
     replicas: 1
     selector:
-      name: "${DATABASE_SERVICE_NAME}"
+      name: "postgresql"
     template:
       metadata:
-        name: "${DATABASE_SERVICE_NAME}"
+        name: "postgresql"
         labels:
-          name: "${DATABASE_SERVICE_NAME}"
+          name: "postgresql"
       spec:
         volumes:
-        - name: "${DATABASE_SERVICE_NAME}-data"
+        - name: "postgresql-data"
           persistentVolumeClaim:
-            claimName: "${DATABASE_SERVICE_NAME}"
+            claimName: "postgresql"
         containers:
         - name: postgresql
           image: " "
@@ -173,7 +172,7 @@ objects:
           - name: POSTGRESQL_DATABASE
             value: "${DATABASE_NAME}"
           volumeMounts:
-          - name: "${DATABASE_SERVICE_NAME}-data"
+          - name: "postgresql-data"
             mountPath: "/var/lib/pgsql/data"
           readinessProbe:
             timeoutSeconds: 1
@@ -203,8 +202,7 @@ parameters:
   description: The OpenShift Namespace where the ImageStream resides.
   value: openshift
 - name: APP_IMAGE
-  displayName: Application Image
-  required: true
+  displayName: Application Image required: true
   value: image-registry.openshift-image-registry.svc:5000/app-development/sample-spring-boot
 - name: APP_IMAGE_TAG
   displayName: Application Image Tag
@@ -235,10 +233,6 @@ parameters:
   description: The exposed hostname that will route to the Django service, if left
     blank a value will be defaulted.
   value: ''
-- name: DATABASE_SERVICE_NAME
-  displayName: Database Service Name
-  required: true
-  value: postgresql
 - name: DATABASE_NAME
   displayName: Database Name
   required: true
