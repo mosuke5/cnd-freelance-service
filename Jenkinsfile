@@ -1,10 +1,8 @@
 #!groovy
-def git_coomit_hash = ""
-def git_branch = ""
 def deploy_branch = "origin/pipeline-dev"
 def deploy_project = "app-development"
 def build_config_name = "freelancer-build"
-def app_image = "docker-registry.default.svc:5000/${deploy_project}/${build_config_name}"
+def app_image = "image-registry.openshift-image-registry.svc:5000/${deploy_project}/${build_config_name}"
 
 pipeline {
   // pipelineを実行するagentの設定。yamlファイルで設定を渡せる
@@ -62,10 +60,10 @@ pipeline {
             openshift.withProject("${deploy_project}") {
               // update build config
               //sh "oc process -f openshift/templates/application-build.yaml | oc apply -n ${deploy_project} -f -"
-              //openshift.apply(openshift.process('-f', 'openshift/templates/application-build.yaml'))
+              openshift.apply(openshift.process('-f', 'openshift/application-build.yaml', '-p', "NAME=${build_config_name}"))
 
-              //openshift.selector("bc", "${build_config_name}").startBuild("--wait=true")
-              //openshift.tag("${build_config_name}:latest", "${build_config_name}:${env.GIT_COMMIT}")
+              openshift.selector("bc", "${build_config_name}").startBuild("--wait=true")
+              openshift.tag("${build_config_name}:latest", "${build_config_name}:${env.GIT_COMMIT}")
             }
           }
         }
@@ -86,7 +84,7 @@ pipeline {
           openshift.withCluster() {
             openshift.withProject("${deploy_project}") {
               //sh "oc process -f openshift/templates/application-deploy.yaml -p APP_IMAGE=${app_image} APP_IMAGE_TAG=${env.GIT_COMMIT} | oc apply -n ${deploy_project} -f -"
-              //openshift.apply(openshift.process('-f', 'openshift/templates/application-deploy.yaml', '-p', "APP_IMAGE=${app_image}", "-p", "APP_IMAGE_TAG=${env.GIT_COMMIT}"))
+              openshift.apply(openshift.process('-f', 'openshift/application-deploy.yaml', '-p', "APP_IMAGE=${app_image}", "-p", "APP_IMAGE_TAG=${env.GIT_COMMIT}"))
             }
           }
         }
