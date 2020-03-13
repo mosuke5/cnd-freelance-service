@@ -27,6 +27,7 @@ pipeline {
       steps {
 				sh 'java -version'
 				sh 'mvn -v'
+        sh 'sleep 3600'
       }
     }
 
