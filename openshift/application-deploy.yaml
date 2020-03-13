@@ -120,16 +120,16 @@ objects:
   spec:
     strategy:
       type: Recreate
-      #recreateParams:
-      #  post:
-      #    execNewPod:
-      #      command:
-      #      - "/bin/bash"
-      #      - "-c"
-      #      - "sleep 10 && curl https://raw.githubusercontent.com/mosuke5/cnd-freelance-service/master/etc/testdata.sql -o testdata.sql && PGPASSWORD=password psql -U freelancer -d freelancerdb -h localhost -f testdata.sql"
-      #      containerName: postgresql
-      #    failurePolicy: Abort
-      #  timeoutSeconds: 600
+      recreateParams:
+        post:
+          execNewPod:
+            command:
+            - "/bin/bash"
+            - "-c"
+            - "sleep 10 && curl https://raw.githubusercontent.com/mosuke5/cnd-freelance-service/master/etc/testdata.sql -o testdata.sql && PGPASSWORD=password psql -U freelancer -d freelancerdb -h localhost -f testdata.sql"
+            containerName: postgresql
+          failurePolicy: Abort
+        timeoutSeconds: 600
     triggers:
     - type: ImageChange
       imageChangeParams:
