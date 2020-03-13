@@ -14,3 +14,20 @@ spec:
         limits:
           cpu: 200m
           memory: 1024Mi
+    - name: postgres
+      image: image-registry.openshift-image-registry.svc:5000/openshift/postgresql:9.4
+      tty: false
+      env:
+        - name: POSTGRESQL_USER
+          value: "postgres"
+        - name: POSTGRESQL_PASSWORD
+          value: "password"
+        - name: POSTGRESQL_DATABASE
+          value: "freelancerdb_test"
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+        limits:
+          cpu: 100m
+          memory: 200Mi

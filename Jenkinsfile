@@ -35,7 +35,8 @@ pipeline {
         stage('Code analysis') {
           steps {
             echo "Exec static analysis"
-            //sh ''
+            sh 'PGPASSWORD=password psql -U postgres -d freelancerdb_test -f etc/testdata.sql'
+            sh 'mvn clean test'
           }
         }
 
