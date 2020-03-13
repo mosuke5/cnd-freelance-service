@@ -19,7 +19,7 @@ spec:
       tty: false
       env:
         - name: POSTGRESQL_USER
-          value: "postgres"
+          value: "freelancer"
         - name: POSTGRESQL_PASSWORD
           value: "password"
         - name: POSTGRESQL_DATABASE
