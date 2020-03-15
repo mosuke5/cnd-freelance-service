@@ -25,8 +25,6 @@ pipeline {
       steps {
 				sh 'java -version'
 				sh 'mvn -v'
-				sh 'mvn clean package -DskipTests'
-        sh 'ls -l target/'
       }
     }
 
@@ -45,6 +43,13 @@ pipeline {
             echo "Exec unit test"
           }
         }
+      }
+    }
+
+    stage('Setup') {
+      steps {
+				sh 'mvn clean package -DskipTests'
+        sh 'ls -l target/'
       }
     }
 
