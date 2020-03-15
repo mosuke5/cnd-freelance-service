@@ -46,7 +46,7 @@ pipeline {
       }
     }
 
-    stage('Setup') {
+    stage('build') {
       steps {
 				sh 'mvn clean package -DskipTests'
         sh 'ls -l target/'
