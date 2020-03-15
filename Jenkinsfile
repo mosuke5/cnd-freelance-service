@@ -49,7 +49,6 @@ pipeline {
     stage('build') {
       steps {
 				sh 'mvn clean package -DskipTests'
-        sh 'ls -l target/'
       }
     }
 
@@ -62,7 +61,6 @@ pipeline {
 
       steps {
         echo "Building OpenShift container image"
-        sh 'ls -l target/'
         script {
           openshift.withCluster() {
             openshift.withProject("${deploy_project}") {
