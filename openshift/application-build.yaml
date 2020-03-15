@@ -24,10 +24,11 @@ objects:
           namespace: "${NAMESPACE}"
           name: 'redhat-openjdk18-openshift:1.2'
     source:
-      type: Git
-      git:
-        uri: "${SOURCE_REPOSITORY_URL}"
-        ref: "${SOURCE_REPOSITORY_REF}"
+      type: binary
+      #type: Git
+      #git:
+      #  uri: "${SOURCE_REPOSITORY_URL}"
+      #  ref: "${SOURCE_REPOSITORY_REF}"
 - kind: ImageStream
   apiVersion: v1
   metadata:

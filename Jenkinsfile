@@ -25,6 +25,7 @@ pipeline {
       steps {
 				sh 'java -version'
 				sh 'mvn -v'
+				sh 'mvn clean package -DskipTests'
       }
     }
 
@@ -62,7 +63,8 @@ pipeline {
               //sh "oc process -f openshift/templates/application-build.yaml | oc apply -n ${deploy_project} -f -"
               openshift.apply(openshift.process('-f', 'openshift/application-build.yaml', '-p', "NAME=${build_config_name}"))
 
-              openshift.selector("bc", "${build_config_name}").startBuild("--wait=true")
+              openshift.selector("bc", "${build_config_name}").startBuild("--from-file=./target/freelancer-service.jar", "--wait=true")
+              //openshift.selector("bc", "${build_config_name}").startBuild("--wait=true")
               openshift.tag("${build_config_name}:latest", "${build_config_name}:${env.GIT_COMMIT}")
             }
           }
