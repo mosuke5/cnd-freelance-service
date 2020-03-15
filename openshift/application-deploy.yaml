@@ -203,7 +203,8 @@ parameters:
   description: The OpenShift Namespace where the ImageStream resides.
   value: openshift
 - name: APP_IMAGE
-  displayName: Application Image required: true
+  displayName: Application Image
+  required: true
   value: image-registry.openshift-image-registry.svc:5000/app-development/sample-spring-boot
 - name: APP_IMAGE_TAG
   displayName: Application Image Tag
